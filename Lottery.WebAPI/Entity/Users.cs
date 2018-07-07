@@ -22,11 +22,21 @@ namespace Lottery.WebAPI.Entity
         [StringLength(50)]
         public string Name { get; set; }
 
+        [Column(TypeName = "money")]
+        public decimal two_number { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal straight { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal unstraight { get; set; }
+
         [Required]
         [StringLength(2)]
         public string Status { get; set; }
 
-        public int Count_Expire_day { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public int? Count_Expire_day { get; set; }
 
         [Column(TypeName = "date")]
         public DateTime Expire_dt { get; set; }

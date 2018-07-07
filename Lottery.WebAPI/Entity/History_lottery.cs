@@ -15,11 +15,12 @@ namespace Lottery.WebAPI.Entity
 
         public int member_id { get; set; }
 
-        [Required]
         [StringLength(2)]
-        public string two_number { get; set; }
+        public string two_number_upper { get; set; }
 
-        [Required]
+        [StringLength(2)]
+        public string two_number_lower { get; set; }
+
         [StringLength(3)]
         public string three_numbrt { get; set; }
 
@@ -35,6 +36,21 @@ namespace Lottery.WebAPI.Entity
 
         [Column(TypeName = "date")]
         public DateTime lot_dt { get; set; }
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        [StringLength(3)]
+        public string check { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal? member_get { get; set; }
+
+        [Column(TypeName = "money")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+        public decimal? member_give { get; set; }
+
+        [Required]
+        [StringLength(3)]
+        public string status { get; set; }
 
         public DateTime Update_dt { get; set; }
 

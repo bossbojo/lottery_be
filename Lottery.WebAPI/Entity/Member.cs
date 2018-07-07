@@ -11,19 +11,21 @@ namespace Lottery.WebAPI.Entity
     {
         public int Id { get; set; }
 
+        public int user_id { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string Name { get; set; }
 
-        public int? count_two_number_both { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? Receivable { get; set; }
 
-        public int? count_two_number_up { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? Paid { get; set; }
 
-        public int? count_two_number_down { get; set; }
+        [Column(TypeName = "money")]
+        public decimal? total { get; set; }
 
-        public int? count_three_numbrt_straight { get; set; }
-
-        public int? count_three_numbrt_unstraight { get; set; }
-
-        public DateTime? Create_dt { get; set; }
+        public DateTime Create_dt { get; set; }
     }
 }

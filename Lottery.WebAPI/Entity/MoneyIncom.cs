@@ -6,13 +6,18 @@ namespace Lottery.WebAPI.Entity
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("LTY.Type")]
-    public partial class Type
+    [Table("LTY.MoneyIncom")]
+    public partial class MoneyIncom
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
 
-        [StringLength(50)]
-        public string type_name { get; set; }
+        public int user_id { get; set; }
+
+        public int member_id { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal paid { get; set; }
+
+        public DateTime Create_dt { get; set; }
     }
 }

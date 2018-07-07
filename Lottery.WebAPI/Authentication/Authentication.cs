@@ -12,7 +12,7 @@ namespace Lottery.WebAPI.Authentication
 
         public int? username { get; set; }
         public string name { get; set; }
-        public int Countday { get; set; }
+        public int? Countday { get; set; }
         public DateTime ep_day { get; set; }
         public long exp { get; set; }
 
