@@ -9,7 +9,7 @@ namespace Lottery.WebAPI.Repositories
     public class R_Authen
     {
         private LotteryDB db = new LotteryDB();
-        public Users GetUsers(int username) {
+        public User GetUsers(int username) {
             return db.Users.Where(c => c.username == username).FirstOrDefault();
         }
         public bool haveUser(int username)
@@ -21,7 +21,7 @@ namespace Lottery.WebAPI.Repositories
             }
             return false;
         }
-        public Users login(int username,string PIN) {
+        public User login(int username,string PIN) {
             var res = db.Users.FirstOrDefault(c => c.username == username && c.PIN == PIN);
             if (res != null)
             {

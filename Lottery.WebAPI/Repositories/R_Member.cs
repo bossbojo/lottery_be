@@ -11,10 +11,10 @@ namespace Lottery.WebAPI.Repositories
     {
         private LotteryDB db = new LotteryDB();
         public IEnumerable<Member> GetAllMember(int user_id) {
-            return db.Member.Where(c => c.user_id == user_id).ToList();
+            return db.Members.Where(c => c.user_id == user_id).ToList();
         }
         public Member GetMemberById(int Id) {
-            return db.Member.FirstOrDefault(c => c.Id == Id);
+            return db.Members.FirstOrDefault(c => c.Id == Id);
         }
         public Member CreateMember(int user_id,string name) {
             var res = db.Database.SqlQuery<Member>("EXEC [LTY].[Member_Create] @user_id,@Name",

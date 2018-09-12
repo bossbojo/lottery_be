@@ -10,7 +10,7 @@ namespace Lottery.WebAPI.Repositories
     {
         private LotteryDB db = new LotteryDB();
         public IEnumerable<Country> GetCountry() {
-            return db.Country.ToList();
+            return db.Countries.ToList();
         }
         public IEnumerable<Type_play> Get_Type()
         {

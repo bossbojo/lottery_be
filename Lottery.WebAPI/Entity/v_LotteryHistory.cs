@@ -24,19 +24,13 @@ namespace Lottery.WebAPI.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int member_id { get; set; }
 
-        [StringLength(2)]
-        public string two_number_upper { get; set; }
-
-        [StringLength(2)]
-        public string two_number_lower { get; set; }
-
         [StringLength(3)]
-        public string three_numbrt { get; set; }
+        public string number { get; set; }
 
         [Key]
         [Column(Order = 3)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int type_id { get; set; }
+        public int type { get; set; }
 
         [Key]
         [Column(Order = 4)]
@@ -56,9 +50,16 @@ namespace Lottery.WebAPI.Entity
         [StringLength(3)]
         public string check { get; set; }
 
+        [Column(TypeName = "money")]
+        public decimal? member_get { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal? member_give { get; set; }
+
         [Key]
-        [Column(Order = 6, TypeName = "money")]
-        public decimal member_get { get; set; }
+        [Column(Order = 6)]
+        [StringLength(3)]
+        public string status { get; set; }
 
         [Key]
         [Column(Order = 7)]
@@ -67,9 +68,6 @@ namespace Lottery.WebAPI.Entity
         [Key]
         [Column(Order = 8)]
         public DateTime Create_dt { get; set; }
-
-        [StringLength(50)]
-        public string type_name { get; set; }
 
         [StringLength(50)]
         public string country_name { get; set; }

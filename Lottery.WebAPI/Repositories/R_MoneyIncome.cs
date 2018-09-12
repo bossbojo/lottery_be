@@ -12,7 +12,7 @@ namespace Lottery.WebAPI.Repositories
     {
         private LotteryDB db = new LotteryDB();
         public IEnumerable<MoneyIncom> GetAllMoneyIncome(int user_id) {
-            return db.MoneyIncom.Where(c => c.user_id == user_id).ToList();
+            return db.MoneyIncoms.Where(c => c.user_id == user_id).ToList();
         }
         public MoneyIncom CreateMoneyIncom(m_MoneyInCome input) {
             var res = db.Database.SqlQuery<MoneyIncom>("EXEC [s_MoneyIncome_Create] @user_id,@member_id,@paid",

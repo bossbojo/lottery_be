@@ -15,16 +15,10 @@ namespace Lottery.WebAPI.Entity
 
         public int member_id { get; set; }
 
-        [StringLength(2)]
-        public string two_number_upper { get; set; }
-
-        [StringLength(2)]
-        public string two_number_lower { get; set; }
-
         [StringLength(3)]
-        public string three_numbrt { get; set; }
+        public string number { get; set; }
 
-        public int type_id { get; set; }
+        public int type { get; set; }
 
         public int Country_id { get; set; }
 

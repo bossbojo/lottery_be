@@ -43,7 +43,7 @@ namespace Lottery.WebAPI.Controllers
         {
             try
             {
-                var decode = Securities.Decode<Users>(request.TempData);
+                var decode = Securities.Decode<User>(request.TempData);
                 if (decode != null) {
                     var res = _Authen.login((int)decode.username,request.PIN);
                     if (res != null)

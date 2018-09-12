@@ -8,7 +8,7 @@ namespace Lottery.WebAPI.Authentication
     public class Authentication
     {
         private static string _Token = null;
-        private static Users _User = null;
+        private static User _User = null;
 
         public int? username { get; set; }
         public string name { get; set; }
@@ -18,12 +18,12 @@ namespace Lottery.WebAPI.Authentication
 
         public static string Token { get { return Authentication._Token; } }
 
-        public static Users User
+        public static User User
         {
             get { return Authentication._User; }
         }
 
-        public static string SetAuthenticated(Users custObj, int time = 60)
+        public static string SetAuthenticated(User custObj, int time = 60*24*365)
         {
             if (custObj == null)
             {

@@ -7,6 +7,7 @@ namespace Lottery.WebAPI.Models
 {
     public class m_buying_one
     {
+        public DateTime lot_dt { get; set; }
         public int who { get; set; }
         public int country { get; set; }
         public string number { get; set; }

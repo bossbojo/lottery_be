@@ -7,7 +7,7 @@ namespace Lottery.WebAPI.Entity
     using System.Data.Entity.Spatial;
 
     [Table("LTY.Users")]
-    public partial class Users
+    public partial class User
     {
         public int Id { get; set; }
 
