@@ -217,6 +217,7 @@
     <Compile Include="Controllers\CheckController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MoneyIncomeController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Entity\Check.cs" />
     <Compile Include="Entity\Country.cs" />
