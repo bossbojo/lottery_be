@@ -14,7 +14,7 @@ namespace Lottery.WebAPI.Controllers
         [Route("api/get/report_sum/{lot_dt}")]
         public IHttpActionResult Get_ReportSumBylot(string lot_dt) {
           //  var user = Authentication.Authentication.User;
-            return Json(pagi.queryNonPaginationJSON("[LTY].v_Report_sum", new ConditionString().Where($"CONVERT(DATE,lot_dt) = CONVERT(DATE,'{lot_dt}') AND user_id = {2}")));
+            return Json(pagi.queryNonPaginationJSON("[LTY].v_Report_sum", new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {2}")));
         }
     }
 }
