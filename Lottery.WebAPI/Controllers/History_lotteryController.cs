@@ -100,6 +100,16 @@ namespace Lottery.WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Route("api/delete/historylottery")]
+        public IHttpActionResult Delete_HistoryLottery(int Id) {
+            try {
+                var res = _History_Lottery.DeleteHistory_lottery(Id);
+                return Json(res);
+            }
+            catch (Exception ex) {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

@@ -65,5 +65,9 @@ namespace Lottery.WebAPI.Repositories
             ).FirstOrDefault();
             return res;
         }
+        public bool DeleteHistory_lottery(int history_id) {
+            var res = db.Database.ExecuteSqlCommand($"DELETE FROM LTY.History_lottery WHERE Id = {history_id}");
+            return res > 0 ? true : false;
+        }
     }
 }
