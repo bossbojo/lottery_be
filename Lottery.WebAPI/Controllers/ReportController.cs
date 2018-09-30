@@ -15,19 +15,22 @@ namespace Lottery.WebAPI.Controllers
         private PaginationAndFilter pagi = new PaginationAndFilter("LotteryDB");
         [Authentication.JWTAuthorize]
         [Route("api/get/report_sum/{lot_dt}")]
-        public IHttpActionResult Get_ReportSumBylot(string lot_dt) {
-            try {
+        public IHttpActionResult Get_ReportSumBylot(string lot_dt)
+        {
+            try
+            {
                 var user = deCodeAuth.GetDeCodeAuthen();
                 var res = pagi.queryNonPaginationJSON("[LTY].v_Report_sum", new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id}"));
                 return Json(res);
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return BadRequest(ex.Message);
             }
         }
         [Authentication.JWTAuthorize]
         [Route("api/get/report_sum_member/{lot_dt}/{member_id}")]
-        public IHttpActionResult Get_ReportSumBylotAndMember(string lot_dt,int member_id)
+        public IHttpActionResult Get_ReportSumBylotAndMember(string lot_dt, int member_id)
         {
             try
             {
@@ -61,7 +64,8 @@ namespace Lottery.WebAPI.Controllers
         }
         [Authentication.JWTAuthorize]
         [Route("api/get/historyLottery/{lot_dt}/{member_id}")]
-        public IHttpActionResult Get_historyLotteryMember(int member_id,string lot_dt) {
+        public IHttpActionResult Get_historyLotteryMember(int member_id, string lot_dt)
+        {
             try
             {
                 var user = deCodeAuth.GetDeCodeAuthen();
@@ -93,16 +97,99 @@ namespace Lottery.WebAPI.Controllers
             }
         }
         [Authentication.JWTAuthorize]
-        [Route("api/get/check_report_lottery/only_correct/{lot_dt}/{country_id}")]
-        public IHttpActionResult Get_CheckReportLotteryOnlyCorrect(int country_id, string lot_dt)
+        [Route("api/get/check_report_lottery/{lot_dt}/{country_id}/{member_id}")]
+        public IHttpActionResult Get_CheckReportLotteryMember(int country_id, string lot_dt, int member_id)
+        {
+            try
+            {
+                var user = deCodeAuth.GetDeCodeAuthen();
+                if (country_id == 0 && member_id != 0)
+                {
+                    var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
+                        new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND member_id = {member_id}")
+                        );
+                    return Json(res);
+                }
+                else if (member_id == 0 && country_id != 0)
+                {
+                    var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
+                          new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND Country_id = {country_id}")
+                          );
+                    return Json(res);
+                }
+                else if (member_id == 0 && country_id == 0)
+                {
+                    var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
+                          new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id}")
+                          );
+                    return Json(res);
+                }
+                else
+                {
+                    var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
+                          new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND Country_id = {country_id} AND member_id = {member_id}")
+                          );
+                    return Json(res);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Authentication.JWTAuthorize]
+        [Route("api/get/check_report_lottery/only_correct/{lot_dt}/{country_id}/{member_id}")]
+        public IHttpActionResult Get_CheckReportLotteryOnlyCorrect(int country_id, string lot_dt, int member_id)
         {
             try
             {
                 var user = deCodeAuth.GetDeCodeAuthen();
                 string cor = "[status] = 'hav' AND (f_check_UpAndDown != 0 OR f_check_Up != 0 OR f_check_Down != 0 OR f_check_Straight != 0 OR f_check_Notstraight != 0)";
-                var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
-                    new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND Country = {country_id} AND {cor}")
+
+                if (country_id == 0 && member_id != 0)
+                {
+                    var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
+                    new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND member_id = {member_id} AND {cor}")
                     );
+                    return Json(res);
+                }
+                else if (member_id == 0 && country_id != 0)
+                {
+                    var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
+                      new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND Country_id = {country_id} AND {cor}")
+                      );
+                    return Json(res);
+                }
+                else if (member_id == 0 && country_id == 0)
+                {
+                    var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
+                      new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND {cor}")
+                      );
+                    return Json(res);
+                }
+                else
+                {
+                    var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery",
+                        new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND Country_id = {country_id} AND member_id = {member_id} AND {cor}")
+                        );
+                    return Json(res);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Authentication.JWTAuthorize]
+        [Route("api/get/check_report_lottery_lot_dt/only_correct/{lot_dt}/{country_id}")]
+        public IHttpActionResult Get_CheckReportLotteryCorrect(int country_id, string lot_dt)
+        {
+            try
+            {
+                var user = deCodeAuth.GetDeCodeAuthen();
+                var res = pagi.queryNonPaginationJSON("[LTY].v_check_lottery_by_lot_dt",
+                   new ConditionString().Where($"lot_dt = CONVERT(DATE,'{lot_dt}') AND user_id = {user.Id} AND Country_id = {country_id}")
+                   );
                 return Json(res);
             }
             catch (Exception ex)
