@@ -207,6 +207,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Authentication\Authentication.cs" />
+    <Compile Include="Authentication\DeCodeAuth.cs" />
     <Compile Include="Authentication\JWTAuthorizeAttribute.cs" />
     <Compile Include="Authentication\Securities.cs" />
     <Compile Include="Controllers\AuthenController.cs" />
@@ -330,7 +331,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>58752</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

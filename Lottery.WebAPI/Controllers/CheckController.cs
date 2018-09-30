@@ -13,6 +13,7 @@ namespace Lottery.WebAPI.Controllers
     [JWTAuthorize]
     public class CheckController : ApiController
     {
+        private DeCodeAuth deCodeAuth = new DeCodeAuth();
         private R_Check _Check = new R_Check();
         [Route("api/get/test")]
         public IHttpActionResult GetTextJson() {
@@ -22,7 +23,7 @@ namespace Lottery.WebAPI.Controllers
         public IHttpActionResult Get_CheckLottery() {
             try
             {
-                var user = Authentication.Authentication.User;
+                var user = deCodeAuth.GetDeCodeAuthen();
                 var res = _Check.GetAllCheck(user.Id);
                 return Json(res);
             }
@@ -35,7 +36,7 @@ namespace Lottery.WebAPI.Controllers
         public IHttpActionResult Post_CreateCheck([FromBody] m_check request) {
             try
             {
-                var user = Authentication.Authentication.User;
+                var user = deCodeAuth.GetDeCodeAuthen();
                 var res = _Check.CreateCheck(request,user.Id);
                 return Json(res);
             }
